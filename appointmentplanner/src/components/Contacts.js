@@ -20,7 +20,7 @@ export default function Contacts(props) {
                 <h2>ADD CONTACT</h2>
                 <form onSubmit={handleSubmit}>
                     <input type='text' id='title' placeholder='Contact Name' onChange={handleChange} value={inputs.title} required/>
-                    <input type='tel' id='phone' placeholder='Contact Phone Number (###-###-####)' value={inputs.phone} onChange={handleChange} pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required/>
+                    <input type='tel' id='phone' placeholder='Contact Phone Number (###-###-####)' value={inputs.phone} onChange={handleChange} pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required/>
                     <input type='email' id='email' placeholder='Contact Email' onChange={handleChange} value={inputs.email} required/>
                     <input type='submit' value='Add Contact'/>
                 </form>
