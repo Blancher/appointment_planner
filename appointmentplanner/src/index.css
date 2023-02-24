@@ -1,11 +1,3 @@
-body, html {
-  height: 100%;
-}
-
-#router {
-  height: 100%;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to left, rgb(181, 211, 227), rgb(107, 114, 107));
 }
 
 code {
@@ -82,6 +75,7 @@ nav {
 
 #contacts, input[type='submit'] {
   width: 468px;
+  cursor: pointer;
 }
 
 input[type='date'], input[type='time'] {
@@ -99,6 +93,7 @@ h2 {
 input, #contacts {
   margin: 20px;
   font-size: 26.5px;
+  border-radius: 5px;
 }
 
 .card {
@@ -112,17 +107,23 @@ input, #contacts {
   margin-bottom: 50px;
 }
 
-.vertline {
-  background-color: black;
-  width: .5%;
-  height: 100%;
-  top: 20.5%;
-  position: absolute;
-  left: 49.5%;
-}
-
 @media screen and (max-width: 1030px) {
   .vertline {
     display: none;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input, input[type='submit'], input[type='time'], input[type='date'], #contacts {
+    font-size: 20px;
+    width: 300px;
   }
 }
