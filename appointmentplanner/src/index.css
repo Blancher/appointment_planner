@@ -101,14 +101,26 @@ input, #contacts {
   font-size: 30px;
   border-top: 1px solid black;
   padding: 20px;
+  width: 50%;
 }
 
 .bottom {
   margin-bottom: 50px;
+  height: 500px;
+  overflow: scroll;
+}
+
+#vertline {
+  background-color: black;
+  width: 5px;
+  height: 80%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 @media screen and (max-width: 1030px) {
-  .vertline {
+  #vertline {
     display: none;
   }
 }
