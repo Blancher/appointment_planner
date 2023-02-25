@@ -97,7 +97,7 @@ input, #contacts {
 }
 
 .card {
-  margin-top: 30px;
+  margin: 30px auto;
   font-size: 30px;
   border-top: 1px solid black;
   padding: 20px;
