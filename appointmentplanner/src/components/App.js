@@ -13,6 +13,7 @@ export default function App() {
         <h1>APPOINTMENT PLANNER</h1>
         <NavBar/>
       </header>
+      <div id='vertline'></div>
       <Route exact path='/'>
         <Redirect to='/contacts'/>
       </Route>
