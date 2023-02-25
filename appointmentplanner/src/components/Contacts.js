@@ -7,22 +7,37 @@ export default function Contacts(props) {
     const [bool, setBool] = useState(contacts === [] ? false : true);
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBool(true);
-        setContacts(prev => [...prev, {title: inputs.title, phone: inputs.phone, email: inputs.email}]);
-        setInputs({title: '', phone: '', email: ''});
+        if (duplicates()) {
+            setBool(true);
+            setContacts(prev => [...prev, {title: inputs.title, phone: inputs.phone, email: inputs.email}]);
+            setInputs({title: '', phone: '', email: ''});
+        }
     };
     const handleChange = (e) => {
         setInputs(prev => ({...prev, [e.target.id]: e.target.value}));
     };
+    const duplicates = () => {
+        const returned = [];
+        for (let i = 0; i < contacts.length; i++) {
+            if (contacts[i].title === inputs.title) {
+                returned.push(true);
+            }
+        }
+        if (returned.length === 0) {
+            return true;
+        } else if (returned.length >= 1) {
+            return false;
+        }
+    }
     return (
         <div className='flex'>
             <div className='half'>
                 <h2>ADD CONTACT</h2>
                 <form onSubmit={handleSubmit}>
                     <input type='text' id='title' placeholder='Contact Name' onChange={handleChange} value={inputs.title} required/>
-                    <input type='tel' id='phone' placeholder='Contact Phone Number (###-###-####)' value={inputs.phone} onChange={handleChange} pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required/>
+                    <input type='tel' id='phone' placeholder='Contact Phone Number' value={inputs.phone} onChange={handleChange} pattern='[0-9]{3}[0-9]{3}[0-9]{4}' required/>
                     <input type='email' id='email' placeholder='Contact Email' onChange={handleChange} value={inputs.email} required/>
-                    <input type='submit' value='Add Contact'/>
+                    <input type='submit' value={duplicates() ? 'Add Contact' : "Names can't be duplicated"}/>
                 </form>
             </div>
             <div className='half bottom'>
