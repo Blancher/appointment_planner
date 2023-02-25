@@ -24,7 +24,7 @@ export default function Appointments(props) {
                         <option value='No Contact Selected'>No Contact Selected</option>
                         {props.contacts.map(contact => <option value={contact.title}>{contact.title}</option>)}
                     </select><br/>
-                    <input type='date' id='date' onChange={handleChange}  value={inputs.date} required/>
+                    <input type='date' id='date' onChange={handleChange} value={inputs.date} required/>
                     <input type='time' id='time' onChange={handleChange} value={inputs.time} required/>
                     <input type='submit' value='Add Appointment'/>
                 </form>
