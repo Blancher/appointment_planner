@@ -3,14 +3,14 @@ import Card from './Card';
 
 export default function Appointments(props) {
     const {appointments, setAppointments} = props;
-    const [inputs, setInputs] = useState({atitle: '', contacts: '', date: '', time: ''});
+    const [inputs, setInputs] = useState({atitle: '', contacts: '', date: '', time: '', id: ''});
     const [bool, setBool] = useState(appointments === [] ? false : true);
     const handleSubmit = (e) => {
         e.preventDefault();
         setBool(true);
-        const newContact = {title: inputs.atitle, contacts: inputs.contacts, date: inputs.date, time: inputs.time, id: Date.now(),};
+        const newContact = {title: inputs.atitle, contacts: inputs.contacts, date: inputs.date, time: inputs.time, id: Date.now()};
         setAppointments((prev) => [newContact, ...prev]);
-        setInputs({ title: '', phone: '', email: '' });
+        setInputs({atitle: '', contacts: '', date: '', time: '', id: ''});
     };
     const handleChange = (e) => {
         setInputs(prev => ({...prev, [e.target.id]: e.target.value}));
