@@ -84,7 +84,6 @@ input[type='date'], input[type='time'] {
 
 h2 {
   width: 515px;
-  text-align: center;
   font-size: 35px;
   font-family: 'Comic Neue';
   margin: 40px 0 20px 0;
@@ -118,6 +117,14 @@ input, #contacts {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+}
+
+.delete {
+  background-color: maroon;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1030px) {
