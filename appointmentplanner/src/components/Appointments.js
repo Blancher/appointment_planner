@@ -15,8 +15,8 @@ export default function Appointments(props) {
     const handleChange = (e) => {
         setInputs(prev => ({...prev, [e.target.id]: e.target.value}));
     };
-    const deleteAppointment = () => {
-        
+    const deleteAppointment = (id) => {
+        setAppointments(prev => prev.filter(appointment => appointment.id !== id));
     };
     return (
         <div className='flex'>
