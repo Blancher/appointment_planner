@@ -8,11 +8,15 @@ export default function Appointments(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setBool(true);
-        setAppointments(prev => [...prev, {atitle: inputs.atitle, contacts: inputs.contacts, date: inputs.date, time: inputs.time}]);
-        setInputs({atitle: '', contacts: '', date: '', time: ''});
+        const newContact = {title: inputs.atitle, contacts: inputs.contacts, date: inputs.date, time: inputs.time, id: Date.now(),};
+        setAppointments((prev) => [newContact, ...prev]);
+        setInputs({ title: '', phone: '', email: '' });
     };
     const handleChange = (e) => {
         setInputs(prev => ({...prev, [e.target.id]: e.target.value}));
+    };
+    const deleteAppointment = () => {
+        
     };
     return (
         <div className='flex'>
@@ -31,7 +35,7 @@ export default function Appointments(props) {
             </div>
             <div className='half bottom'>
                 <h2>APPOINTMENTS</h2>
-                {bool && appointments.map(appointment => <Card first={appointment.atitle} second={appointment.contacts} third={`${appointment.date.split('-')[1]}/${appointment.date.split('-')[2]}/${appointment.date.split('-')[0]}`} fourth={`${[appointment.time.split(':')[0] % 12, appointment.time.split(':')[1]].join(':')} ${appointment.time.split(':')[0] > 12 ? 'PM' : 'AM'}`} key={appointment}/>)}
+                {bool && appointments.map(appointment => <Card first={appointment.atitle} second={appointment.contacts} third={`${appointment.date.split('-')[1]}/${appointment.date.split('-')[2]}/${appointment.date.split('-')[0]}`} fourth={`${[appointment.time.split(':')[0] % 12, appointment.time.split(':')[1]].join(':')} ${appointment.time.split(':')[0] > 12 ? 'PM' : 'AM'}`} onClick={() => deleteAppointment(appointment.id)} key={appointment}/>)}
             </div>
         </div>
     );
