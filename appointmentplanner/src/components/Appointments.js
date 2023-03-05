@@ -9,7 +9,7 @@ export default function Appointments(props) {
         e.preventDefault();
         setBool(true);
         const newContact = {atitle: inputs.atitle, contacts: inputs.contacts, date: inputs.date, time: inputs.time, id: Date.now()};
-        setAppointments((prev) => [newContact, ...prev]);
+        setAppointments(prev => [newContact, ...prev]);
         setInputs({atitle: '', contacts: '', date: '', time: '', id: ''});
     };
     const handleChange = (e) => {
