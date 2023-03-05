@@ -10,7 +10,7 @@ export default function Contacts(props) {
     if (duplicates()) {
       setBool(true);
       const newContact = {title: inputs.title, phone: inputs.phone, email: inputs.email, id: Date.now()};
-      setContacts((prev) => [newContact, ...prev]);
+      setContacts(prev => [newContact, ...prev]);
       setInputs({ title: '', phone: '', email: '' });
     }
   };
@@ -22,11 +22,7 @@ export default function Contacts(props) {
   };
   const duplicates = () => {
     const returned = [];
-    for (let i = 0; i < contacts.length; i++) {
-      if (contacts[i].title === inputs.title) {
-        returned.push(true);
-      }
-    }
+    contacts.forEach(contact => contact.title === inputs.title && returned.push(true));
     if (returned.length === 0) {
       return true;
     } else if (returned.length >= 1) {
