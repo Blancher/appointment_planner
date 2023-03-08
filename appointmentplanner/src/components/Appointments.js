@@ -4,7 +4,7 @@ import Card from './Card';
 export default function Appointments(props) {
     const {appointments, setAppointments} = props;
     const [inputs, setInputs] = useState({atitle: '', contacts: '', date: '', time: '', id: ''});
-    const [bool, setBool] = useState(contacts === [] ? false : true);
+    const [bool, setBool] = useState(appointments === [] ? false : true);
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
