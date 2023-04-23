@@ -127,6 +127,40 @@ input, #contacts {
   cursor: pointer;
 }
 
+.other {
+  background-color: rgb(144, 144, 219);
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  width: 70px;
+}
+
+.container {
+  width: 150px;
+  margin: 0 auto;
+  position: relative;
+  bottom: 20px;
+}
+
+.card p {
+  margin: 5px;
+}
+
+p {
+  font-size: 30px;
+}
+
+.cardedit {
+  width: 300px;
+  position: relative;
+  right: 40px;
+}
+
+.other, .delete {
+  margin: -10px 10px;
+}
+
 @media screen and (max-width: 1030px) {
   #vertline {
     display: none;
