@@ -1,17 +1,18 @@
 import {useState} from 'react';
-import Card from './Card';
+import ContactCard from './ContactCard';
 
 export default function Contacts(props) {
   const {contacts, setContacts} = props;
-  const [inputs, setInputs] = useState({ title: '', phone: '', email: '' });
+  const [inputs, setInputs] = useState({title: '', phone: '', email: ''});
   const [bool, setBool] = useState(contacts === [] ? false : true);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (duplicates()) {
       setBool(true);
-      const newContact = {title: inputs.title, phone: inputs.phone, email: inputs.email, id: Date.now()};
+      const id = Date.now();
+      const newContact = {title: inputs.title, phone: inputs.phone, email: inputs.email, id: id, disabled: true};
       setContacts(prev => [newContact, ...prev]);
-      setInputs({ title: '', phone: '', email: '' });
+      setInputs({title: '', phone: '', email: ''});
     }
   };
   const handleChange = (e) => {
@@ -19,6 +20,9 @@ export default function Contacts(props) {
   };
   const deleteContact = (id) => {
     setContacts(prev => prev.filter((item) => item.id !== id));
+  };
+  const editAppointment = (obj) => {
+    setContacts(prev => prev.map(contact => contact.id === obj.id ? {title: obj.first, phone: obj.second, email: obj.third, id: obj.id} : contact));
   };
   const duplicates = () => {
     const returned = [];
@@ -42,7 +46,7 @@ export default function Contacts(props) {
       </div>
       <div className="half bottom">
         <h2>CONTACTS</h2>
-        {bool && contacts.map(contact => <Card first={contact.title} second={contact.phone} third={contact.email} onClick={() => deleteContact(contact.id)} key={contact}/>)}
+        {bool && contacts.map((contact, i) => <ContactCard duplicates={duplicates} first={contact.title} second={contact.phone} third={contact.email} onClick={() => deleteContact(contact.id)} type='contact' id={contact.id} editAppointment={editAppointment} key={`${i}_${contact}`}/>)}
       </div>
     </div>
   );
