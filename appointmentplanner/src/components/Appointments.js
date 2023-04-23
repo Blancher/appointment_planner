@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Card from './Card';
+import AppointmentCard from './AppointmentCard';
 
 export default function Appointments(props) {
     const {appointments, setAppointments} = props;
@@ -10,6 +10,8 @@ export default function Appointments(props) {
     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
     const day = currentDate.getDate().toString().padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
+    const third = appointment => `${appointment.date.toString().split('-')[1]}/${appointment.date.split('-')[2]}/${appointment.date.split('-')[0]}`.split('/').filter(item => item !== 'undefined').join('/');
+    const fourth = appointment => `${[appointment.time.toString().split(':')[0] % 12, appointment.time.split(':')[1]].join(':')} ${appointment.time.split(':')[0] > 12 ? 'PM' : 'AM'}`.split(' ').filter(item => item !== 'AM').join(' ');
     const handleSubmit = (e) => {
         e.preventDefault();
         setBool(true);
@@ -22,6 +24,9 @@ export default function Appointments(props) {
     };
     const deleteAppointment = (id) => {
         setAppointments(prev => prev.filter(appointment => appointment.id !== id));
+    };
+    const editAppointment = (obj) => {
+        setAppointments(prev => prev.map(appointment => appointment.id === obj.id ? {atitle: obj.first, contacts: obj.second, date: obj.third, time: obj.fourth, id: obj.id} : appointment));
     };
     return (
         <div className='flex'>
@@ -40,7 +45,7 @@ export default function Appointments(props) {
             </div>
             <div className='half bottom'>
                 <h2>APPOINTMENTS</h2>
-                {bool && appointments.map((appointment, i) => <Card first={appointment.atitle} second={appointment.contacts} third={`${appointment.date.split('-')[1]}/${appointment.date.split('-')[2]}/${appointment.date.split('-')[0]}`} fourth={`${[appointment.time.split(':')[0] % 12, appointment.time.split(':')[1]].join(':')} ${appointment.time.split(':')[0] > 12 ? 'PM' : 'AM'}`} onClick={() => deleteAppointment(appointment.id)} key={`${i}_${appointment}`}/>)}
+                {bool && appointments.map((appointment, i) => <AppointmentCard formattedDate={formattedDate} contacts={props.contacts} first={appointment.atitle} second={appointment.contacts} third={third(appointment)} fourth={fourth(appointment)} onClick={() => deleteAppointment(appointment.id)} id={appointment.id} type='appointment' editAppointment={editAppointment} key={`${i}_${appointment}`}/>)}
             </div>
         </div>
     );
