@@ -25,7 +25,6 @@ export default function ContactCard(props) {
                         <p><b>{props.first}</b></p>
                         <p>{props.second}</p>
                         <p>{props.third}</p>
-                        {props.fourth && <p>{props.fourth}</p>}
                     </>
                 )}
                 {form && (
